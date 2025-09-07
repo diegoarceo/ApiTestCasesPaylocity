@@ -18,7 +18,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pyton -m pip install --upgrade pip
+        python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pytest-github-report
 
