@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-    - name: checkout repository
-      uses: actions/setup-python@v2
 
     - name: Set up Python
       uses: actions/setup-python@v5
