@@ -1,0 +1,38 @@
+name: Api test Paylocity
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: checkout repository
+      uses: actions/setup-python@v2
+
+    - name: Set up Python
+      uses: actions/setip-python@v5
+      with:
+        python-version: '3.13'
+
+    - name: Install dependencies
+      run: |
+        pyton -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest-github-report
+
+    - name: Run test 
+        run |
+          pytest PaylocityTest.py --junit-xml=test-results.xml
+
+    - name: Surface falling tests
+      if: always()
+      uses: pmeier/pytest-results-action@main
+      with:
+        path: test-results.xml
+        summary: true
+        display-options: fEX
+        fail-on-empty: true
+        title: Test results
+        
