@@ -23,7 +23,7 @@ jobs:
         pip install pytest-github-report
 
     - name: Run test with github report
-      run |
+      run: |
           pytest PaylocityTest.py --junit-xml=test-results.xml
 
     - name: Surface falling tests
